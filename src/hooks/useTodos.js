@@ -4,10 +4,7 @@ export function useTodos() {
   const [tasks, setTasks] = useState(() => {
     const saved = localStorage.getItem('my_todos');
     if (saved) return JSON.parse(saved);
-    return [
-      { id: 1, text: 'Update the website footer', date: '2026-10-07', priority: 'Medium', status: 'In Progress' },
-      { id: 2, text: 'Update the LinkedIn profile', date: '2026-10-08', priority: 'Urgent', status: 'Todo' },
-    ];
+    return []; 
   });
 
   const [filter, setFilter] = useState('All');
@@ -23,9 +20,17 @@ export function useTodos() {
       text,
       date: dueDate || new Date().toISOString().split('T')[0],
       priority,
-      status: 'Todo' 
+      status: 'Todo'
     };
     setTasks([newTask, ...tasks]);
+  };
+
+  const editTask = (id, updatedText, updatedPriority, updatedDate) => {
+    setTasks(tasks.map(t => 
+      t.id === id 
+        ? { ...t, text: updatedText, priority: updatedPriority, date: updatedDate } 
+        : t
+    ));
   };
 
   const changeTaskStatus = (id, newStatus) => {
@@ -40,7 +45,7 @@ export function useTodos() {
     if (filter === 'Todo') return task.status === 'Todo';
     if (filter === 'In Progress') return task.status === 'In Progress';
     if (filter === 'Completed') return task.status === 'Completed';
-    return true; 
+    return true;
   });
 
   const scheduleTasks = tasks.filter(task => {
@@ -64,6 +69,7 @@ export function useTodos() {
     filteredTasks,
     scheduleTasks,
     addTask,
+    editTask, 
     changeTaskStatus,
     deleteTask,
     totalTasks: tasks.length,

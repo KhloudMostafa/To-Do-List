@@ -1,6 +1,6 @@
 import TaskItem from './TaskItem';
 
-function TaskList({ tasks, onChangeStatus, onDelete }) {
+function TaskList({ tasks, onChangeStatus, onDelete, onEdit }) {
   if (tasks.length === 0) {
     return (
       <div className="text-center text-muted py-4">
@@ -18,7 +18,7 @@ function TaskList({ tasks, onChangeStatus, onDelete }) {
             <th scope="col">Task</th>
             <th scope="col">Date</th>
             <th scope="col">Priority</th>
-            <th scope="col" style={{ width: '50px' }}></th>
+            <th scope="col" style={{ width: '80px' }}>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -28,6 +28,7 @@ function TaskList({ tasks, onChangeStatus, onDelete }) {
               task={task} 
               onChangeStatus={onChangeStatus} 
               onDelete={onDelete} 
+              onEdit={onEdit}
             />
           ))}
         </tbody>
