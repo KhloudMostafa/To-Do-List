@@ -15,6 +15,7 @@ function App() {
     filteredTasks,
     scheduleTasks,
     addTask,
+    editTask,
     changeTaskStatus,
     deleteTask,
     totalTasks,
@@ -32,7 +33,7 @@ function App() {
           onAddTask={addTask}
           totalTasks={totalTasks}
           completedCount={completedCount}
-          inProgressCount={inProgressCount} 
+          inProgressCount={inProgressCount}
           pendingCount={pendingCount}
         />
 
@@ -46,6 +47,7 @@ function App() {
               tasks={filteredTasks} 
               onChangeStatus={changeTaskStatus} 
               onDelete={deleteTask} 
+              onEdit={editTask}
             />
           </div>
 
@@ -55,6 +57,7 @@ function App() {
             tasks={scheduleTasks}
             onChangeStatus={changeTaskStatus}
             onDelete={deleteTask}
+            onEdit={editTask}
           />
         </div>
       </div>

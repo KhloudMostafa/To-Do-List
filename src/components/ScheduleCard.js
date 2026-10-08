@@ -1,6 +1,6 @@
 import TaskList from './TaskList';
 
-function ScheduleCard({ scheduleFilter, setScheduleFilter, tasks, onToggle, onDelete }) {
+function ScheduleCard({ scheduleFilter, setScheduleFilter, tasks, onChangeStatus, onDelete, onEdit }) {
   return (
     <div className="card shadow-sm border-0 p-4 bg-white rounded-4 mt-4">
       <h5 className="card-title fw-semibold mb-3 text-dark">Schedule</h5>
@@ -26,7 +26,12 @@ function ScheduleCard({ scheduleFilter, setScheduleFilter, tasks, onToggle, onDe
         </button>
       </div>
 
-      <TaskList tasks={tasks} onToggle={onToggle} onDelete={onDelete} />
+      <TaskList 
+        tasks={tasks} 
+        onChangeStatus={onChangeStatus} 
+        onDelete={onDelete} 
+        onEdit={onEdit} 
+      />
     </div>
   );
 }
